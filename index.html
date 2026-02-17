@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Para Yasmin ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="world"></canvas>
+
+    <div id="ui-layer">
+        
+        <div class="letter-container">
+            <div id="letter-y" class="flaming-letter neon-pink">Y</div>
+            <div id="letter-p" class="flaming-letter neon-red">P</div>
+        </div>
+
+        <div id="main-heart" class="hidden">❤️</div>
+
+        <div id="floating-kittens" class="hidden">
+            <img src="https://placekitten.com/200/200" class="float-cat c1" alt="Gatinho">
+            <img src="https://placekitten.com/201/201" class="float-cat c2" alt="Gatinho">
+            <img src="https://placekitten.com/202/202" class="float-cat c3" alt="Gatinho">
+        </div>
+
+        <div id="final-text" class="hidden">
+            <h1 class="neon-text">Eu Te Amo <span class="heart-icon">❤️</span> Yasmin</h1>
+            <p class="subtitle">Minha fofura!! Meu amor por você brilha além das estrelas.</p>
+        </div>
+
+        <div id="secret-message" class="toast hidden"></div>
+
+        <div id="interaction-hint" class="hidden">
+            <p>Toque no coração • Deslize para cima • Deslize para os lados</p>
+        </div>
+    </div>
+
+    <div id="kitten-gallery">
+        <div class="gallery-header">
+            <h2>Galeria da Fofura</h2>
+            <p>Deslize para baixo para fechar</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://placekitten.com/300/300" alt="Cat"></div>
+            <div class="gallery-item"><img src="https://placekitten.com/301/301" alt="Cat"></div>
+            <div class="gallery-item"><img src="https://placekitten.com/302/302" alt="Cat"></div>
+            <div class="gallery-item"><img src="https://placekitten.com/303/303" alt="Cat"></div>
+            <div class="gallery-item"><img src="https://placekitten.com/304/304" alt="Cat"></div>
+            <div class="gallery-item"><img src="https://placekitten.com/305/305" alt="Cat"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
