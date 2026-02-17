@@ -64,25 +64,34 @@ animate();
 
 function startSequence() {
     const tl = gsap.timeline();
+    const ly = document.getElementById('letter-y');
+    const lp = document.getElementById('letter-p');
+    const plus = document.getElementById('symbol-plus');
 
     tl.to({}, { duration: 2, onStart: () => phase = 'gathering' })
       .to(particlesMesh.scale, { x: 1.3, y: 1.3, duration: 0.6, yoyo: true, repeat: 2 })
       .to({}, { duration: 0.1, onStart: () => phase = 'explosion' })
-      .to('#letter-y', { top: '42%', opacity: 1, duration: 1.2, ease: "power2.out" }, "+=0.2")
-      .to('#letter-p', { bottom: '42%', opacity: 1, duration: 1.2, ease: "power2.out" }, "<")
-      .to('.flaming-letter', { rotation: 720, scale: 0, opacity: 0, duration: 1.2, ease: "back.in(2)" }, "+=0.5")
+      
+      // Faz o Y, o + e o P aparecerem
+      .to([ly, plus, lp], { opacity: 1, duration: 1.2, ease: "power2.out" }, "+=0.2")
+      .to(ly, { top: '42%' }, "<")
+      .to(lp, { bottom: '42%' }, "<")
+      
+      // Gira e some com os três
+      .to([ly, plus, lp], { rotation: 720, scale: 0, opacity: 0, duration: 1.2, ease: "back.in(2)" }, "+=0.5")
+      
       .to({}, { onStart: () => {
           showElement('main-heart');
           showElement('floating-kittens');
           showElement('final-text');
 
-          // Reaparecimento das letras no topo
-          const ly = document.getElementById('letter-y');
-          const lp = document.getElementById('letter-p');
-          gsap.set([ly, lp], { rotation: 0, scale: 1, opacity: 0 });
+          // Reaparecimento no topo (Y + P)
+          gsap.set([ly, lp, plus], { rotation: 0, scale: 1, opacity: 0 });
           ly.classList.add('at-top');
           lp.classList.add('at-top');
-          gsap.to([ly, lp], { opacity: 1, duration: 2, delay: 0.8 });
+          plus.classList.add('at-top');
+          
+          gsap.to([ly, lp, plus], { opacity: 1, duration: 2, delay: 0.8 });
       }})
       .from('#main-heart', { scale: 0, duration: 1, ease: "elastic.out(1, 0.3)" })
       .from('#final-text', { y: 30, opacity: 0, duration: 1.5 }, "<");

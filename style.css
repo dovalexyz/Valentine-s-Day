@@ -122,3 +122,27 @@ body {
 }
 
 .hidden { display: none; opacity: 0; }
+
+/* Adicione a cor dourada (Gold) */
+.neon-gold { color: #ffd700; filter: drop-shadow(0 0 10px #ffd700); }
+
+/* Ajuste o sinal de mais para começar no centro */
+#symbol-plus {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Configuração do sinal de mais no topo ao final */
+#symbol-plus.at-top {
+    top: 5% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 2.5rem;
+    opacity: 1 !important;
+    transition: all 1.5s ease-in-out;
+}
+
+/* Ajuste as letras para darem espaço ao sinal no topo */
+#letter-y.at-top { left: calc(50% - 60px); transform: translateX(0); }
+#letter-p.at-top { left: calc(50% + 60px); transform: translateX(0); }
