@@ -99,7 +99,7 @@ body {
 
 .neon-text {
     font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     color: #fff;
     text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
 }
