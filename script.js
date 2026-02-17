@@ -28,7 +28,6 @@ const material = new THREE.PointsMaterial({
 const particlesMesh = new THREE.Points(geometry, material);
 scene.add(particlesMesh);
 
-// Lógica do Coração de Partículas
 function getHeartPoint(t) {
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
@@ -63,7 +62,6 @@ function animate() {
 }
 animate();
 
-// Timeline da Animação
 function startSequence() {
     const tl = gsap.timeline();
 
@@ -77,6 +75,14 @@ function startSequence() {
           showElement('main-heart');
           showElement('floating-kittens');
           showElement('final-text');
+
+          // Reaparecimento das letras no topo
+          const ly = document.getElementById('letter-y');
+          const lp = document.getElementById('letter-p');
+          gsap.set([ly, lp], { rotation: 0, scale: 1, opacity: 0 });
+          ly.classList.add('at-top');
+          lp.classList.add('at-top');
+          gsap.to([ly, lp], { opacity: 1, duration: 2, delay: 0.8 });
       }})
       .from('#main-heart', { scale: 0, duration: 1, ease: "elastic.out(1, 0.3)" })
       .from('#final-text', { y: 30, opacity: 0, duration: 1.5 }, "<");
@@ -90,7 +96,6 @@ function showElement(id) {
 
 setTimeout(startSequence, 1000);
 
-// Interação de Toque
 document.getElementById('main-heart').addEventListener('click', (e) => {
     for (let i = 0; i < 12; i++) {
         const h = document.createElement('div');
@@ -105,4 +110,10 @@ document.getElementById('main-heart').addEventListener('click', (e) => {
             onComplete: () => h.remove()
         });
     }
+});
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 });
