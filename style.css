@@ -1,6 +1,6 @@
 :root {
     --neon-pink: #ff00ff;
-    --neon-red: #ff0040;
+    --neon-blue: #2200ff;
     --bg-color: #000000;
 }
 
@@ -12,6 +12,14 @@ body {
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
     width: 100vw;
+    /* Borda Neon Rosa Pulsante */
+    box-shadow: inset 0 0 15px var(--neon-pink), inset 0 0 30px var(--neon-pink);
+    animation: neonBorder 2s infinite alternate ease-in-out;
+}
+
+@keyframes neonBorder {
+    from { box-shadow: inset 0 0 10px var(--neon-pink), inset 0 0 20px var(--neon-pink); }
+    to { box-shadow: inset 0 0 25px var(--neon-pink), inset 0 0 50px var(--neon-pink); }
 }
 
 #world {
@@ -32,7 +40,6 @@ body {
     pointer-events: none;
 }
 
-/* Letras e Efeito de Reaparecimento no Topo */
 .flaming-letter {
     position: absolute;
     font-size: 8rem;
@@ -53,13 +60,12 @@ body {
 #letter-y { top: -20%; left: 50%; transform: translateX(-50%); }
 #letter-p { bottom: -20%; left: 50%; transform: translateX(-50%); }
 
-#letter-y.at-top { left: calc(50% - 40px); transform: translateX(0); }
-#letter-p.at-top { left: calc(50% + 40px); transform: translateX(0); }
+#letter-y.at-top { left: calc(50% - 60px); transform: translateX(0); }
+#letter-p.at-top { left: calc(50% + 60px); transform: translateX(0); }
 
 .neon-pink { color: var(--neon-pink); }
-.neon-red { color: var(--neon-red); }
+.neon-blue { color: var(--neon-blue); }
 
-/* Gatinhos (Camada de Baixo) */
 #floating-kittens {
     position: absolute;
     inset: 0;
@@ -80,7 +86,6 @@ body {
 .c2 { top: 15%; right: 15%; animation: float 7s infinite ease-in-out 1s; }
 .c3 { bottom: 25%; left: 20%; animation: float 8s infinite ease-in-out 2s; }
 
-/* Coração e Texto (Camada de Cima) */
 #main-heart {
     font-size: 10rem;
     z-index: 20;
@@ -110,6 +115,12 @@ body {
     margin-top: 10px;
     letter-spacing: 1px;
 }
+.subtitle2 {
+    font-size: 1.1rem;
+    color: #eee;
+    margin-top: -5px;
+    letter-spacing: 1px;
+}
 
 @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
@@ -123,17 +134,14 @@ body {
 
 .hidden { display: none; opacity: 0; }
 
-/* Adicione a cor dourada (Gold) */
 .neon-gold { color: #ffd700; filter: drop-shadow(0 0 10px #ffd700); }
 
-/* Ajuste o sinal de mais para começar no centro */
 #symbol-plus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-/* Configuração do sinal de mais no topo ao final */
 #symbol-plus.at-top {
     top: 5% !important;
     left: 50% !important;
@@ -142,7 +150,3 @@ body {
     opacity: 1 !important;
     transition: all 1.5s ease-in-out;
 }
-
-/* Ajuste as letras para darem espaço ao sinal no topo */
-#letter-y.at-top { left: calc(50% - 60px); transform: translateX(0); }
-#letter-p.at-top { left: calc(50% + 60px); transform: translateX(0); }
