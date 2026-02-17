@@ -1,7 +1,6 @@
 :root {
     --neon-pink: #ff00ff;
     --neon-red: #ff0040;
-    --neon-gold: #ffd700;
     --bg-color: #000000;
 }
 
@@ -11,17 +10,14 @@ body {
     background-color: var(--bg-color);
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
-    color: white;
     height: 100vh;
     width: 100vw;
 }
 
 #world {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 1;
 }
 
@@ -29,172 +25,84 @@ body {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 10;
-    pointer-events: none; /* Deixa clicar no canvas 3D */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
 }
 
-/* --- Letras Flamejantes --- */
-.letter-container {
-    position: absolute;
-    width: 100%; height: 100%;
-}
-
+/* Letras */
 .flaming-letter {
     position: absolute;
     font-size: 8rem;
-    font-weight: bold;
     font-family: 'Great Vibes', cursive;
-    opacity: 0; /* Começa invisível */
-    filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 30px currentColor);
+    opacity: 0;
+    filter: drop-shadow(0 0 10px currentColor);
 }
-
-.neon-pink { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink); }
-.neon-red { color: var(--neon-red); text-shadow: 0 0 20px var(--neon-red); }
-
+.neon-pink { color: var(--neon-pink); }
+.neon-red { color: var(--neon-red); }
 #letter-y { top: -20%; left: 50%; transform: translateX(-50%); }
 #letter-p { bottom: -20%; left: 50%; transform: translateX(-50%); }
 
-/* --- Coração Principal --- */
-#main-heart {
-    font-size: 10rem;
-    color: var(--neon-red);
-    filter: drop-shadow(0 0 20px var(--neon-red)) drop-shadow(0 0 60px var(--neon-pink));
-    animation: heartbeat 1.5s infinite ease-in-out;
-    cursor: pointer;
-    pointer-events: auto; /* Habilita clique */
-    transition: transform 0.1s;
-    z-index: 20;
-}
-
-#main-heart:active { transform: scale(0.9); }
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-}
-
-/* --- Gatinhos Flutuantes --- */
+/* Gatinhos (Z-INDEX BAIXO) */
 #floating-kittens {
     position: absolute;
-    width: 100%; height: 100%;
-    z-index: 5;
+    inset: 0;
+    z-index: 5; /* Atrás do texto e do coração */
 }
-
 .float-cat {
     position: absolute;
-    width: 100px; height: 100px;
+    width: 110px; height: 110px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--neon-pink);
-    box-shadow: 0 0 15px var(--neon-pink);
-    opacity: 0.8;
+    box-shadow: 0 0 20px var(--neon-pink);
+    opacity: 0.6;
 }
-
 .c1 { top: 20%; left: 10%; animation: float 6s infinite ease-in-out; }
 .c2 { top: 15%; right: 15%; animation: float 7s infinite ease-in-out 1s; }
 .c3 { bottom: 25%; left: 20%; animation: float 8s infinite ease-in-out 2s; }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+/* Coração e Texto (Z-INDEX ALTO) */
+#main-heart {
+    font-size: 10rem;
+    z-index: 20;
+    pointer-events: auto;
+    filter: drop-shadow(0 0 30px var(--neon-red));
+    animation: heartbeat 1.5s infinite ease-in-out;
 }
 
-/* --- Texto Final --- */
 #final-text {
     position: absolute;
-    bottom: 15%;
+    bottom: 12%;
     text-align: center;
+    z-index: 30; /* Sempre no topo */
     width: 100%;
-    padding: 0 20px;
 }
 
 .neon-text {
     font-family: 'Great Vibes', cursive;
     font-size: 3.5rem;
     color: #fff;
-    text-shadow: 
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 20px var(--neon-pink),
-        0 0 40px var(--neon-pink),
-        0 0 80px var(--neon-pink);
-    margin-bottom: 10px;
+    text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    color: #ddd;
-    text-shadow: 0 0 5px black;
+    font-size: 1.1rem;
+    color: #eee;
+    margin-top: 10px;
+    letter-spacing: 1px;
 }
 
-.heart-icon { color: red; animation: heartbeat 1s infinite; display: inline-block; }
-
-/* --- Galeria (Swipe Up) --- */
-#kitten-gallery {
-    position: fixed;
-    bottom: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    z-index: 100;
-    transform: translateY(100%); /* Escondido embaixo */
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    backdrop-filter: blur(10px);
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
-#kitten-gallery.active { transform: translateY(0); }
-
-.gallery-header { text-align: center; margin-bottom: 20px; color: var(--neon-pink); }
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    overflow-y: auto;
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
 }
 
-.gallery-item img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
-}
-
-/* --- Mensagens Secretas --- */
-.toast {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    padding: 20px 40px;
-    border-radius: 30px;
-    border: 1px solid var(--neon-pink);
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-    text-align: center;
-    color: var(--neon-gold);
-    box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s;
-    width: 80%;
-}
-
-.toast.show { opacity: 1; }
-
-#interaction-hint {
-    position: absolute;
-    bottom: 20px;
-    font-size: 0.8rem;
-    opacity: 0.5;
-    animation: fadePulse 3s infinite;
-}
-
-@keyframes fadePulse { 0%,100%{opacity:0.3} 50%{opacity:0.7}}
-
-.hidden { opacity: 0; display: none; }
+.hidden { display: none; opacity: 0; }
